@@ -11,5 +11,9 @@
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         }
+    ],
+    "cleanUrls": true,
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/index.html" }
     ]
 }
