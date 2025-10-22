@@ -16,11 +16,5 @@
   "devDependencies": {
     "vite": "^5.0.0",
     "@vitejs/plugin-react": "^5.0.0"
-  },
-  "builds": [
-    { "src": "index.html", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  }
 }
