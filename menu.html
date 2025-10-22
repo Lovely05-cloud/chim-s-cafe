@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Chim's Cafe</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="reservation.html">Reservation</a></li>
+                <li><a href="feedback.html">Feedback</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn">Login</a></li>
+            </ul>
+            <button id="cart-btn" style="position:relative; background:none; border:none; cursor:pointer; font-size:1.5rem;">
+                🛒 <span id="cart-count" style="background:#d4b483;color:#3a2a1a;border-radius:50%;padding:2px 8px;font-size:0.9rem;position:absolute;top:-10px;right:-10px;">0</span>
+            </button>
+        </div>
+    <!-- Cart Modal -->
+    <div id="cart-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);z-index:999;align-items:center;justify-content:center;">
+        <div style="background:white;padding:2rem 1.5rem;border-radius:10px;max-width:400px;width:90vw;position:relative;">
+            <h3 style="margin-bottom:1rem;color:#8b5a2b;">Your Order</h3>
+            <ul id="cart-list" style="list-style:none;padding:0;margin:0 0 1rem 0;"></ul>
+            <div id="cart-total" style="color:#5a3e2b;font-weight:600;text-align:right;margin-bottom:1rem;display:none;">Total: ₱0</div>
+            <div id="cart-empty" style="color:#8b5a2b;text-align:center;">Your cart is empty.</div>
+                        <button id="order-now" style="display:block;width:100%;background:#8b5a2b;color:white;padding:0.7rem 0;border:none;border-radius:5px;font-size:1.1rem;font-weight:600;cursor:pointer;margin-top:1rem;">Order Now</button>
+                        <!-- Order Details Form (hidden by default) -->
+                        <form id="order-details-form" style="display:none;flex-direction:column;gap:1rem;margin-top:1rem;">
+                            <input type="text" name="order-name" placeholder="Full Name" required style="padding:0.7rem;border-radius:5px;border:1px solid #d4b483;">
+                            <input type="text" name="order-address" placeholder="Address" required style="padding:0.7rem;border-radius:5px;border:1px solid #d4b483;">
+                            <input type="tel" name="order-contact" placeholder="Contact Number" required pattern="[0-9]{10,15}" style="padding:0.7rem;border-radius:5px;border:1px solid #d4b483;">
+                            <button type="submit" style="background:#8b5a2b;color:#fff;padding:0.7rem;border:none;border-radius:5px;font-weight:600;">Confirm Order</button>
+                            <div id="order-details-confirm" style="color:#4caf50;text-align:center;display:none;">Order placed! Thank you.</div>
+                        </form>
+            <button id="close-cart" style="position:absolute;top:10px;right:10px;background:none;border:none;font-size:1.2rem;cursor:pointer;">✖</button>
+        </div>
+    </div>
+    </nav>
+    <section class="menu-section" id="menu">
+        <div class="section-title">
+            <h2>Our Menu</h2>
+            <p style="margin-top:1rem;color:#8b5a2b;font-size:1.1rem;">Hello, chimmies! Explore your favorites below.</p>
+        </div>
+        <div class="menu-categories">
+            <button class="category-btn active" data-category="all">All</button>
+            <button class="category-btn" data-category="hot">Hot Coffee</button>
+            <button class="category-btn" data-category="iced">Iced Coffee</button>
+            <button class="category-btn" data-category="frappe">Frappe</button>
+            <button class="category-btn" data-category="pasta">Pasta</button>
+            <button class="category-btn" data-category="pastry">Pastry</button>
+        </div>
+        <div class="menu-grid">
+        <!-- Hot Coffee -->
+        <div class="menu-item" data-category="hot">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/4c/28/e2/4c28e2420bf38c50120dba0cbaf42e8d.jpg" alt="Espresso">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Classic Espresso</h3>
+                <p class="item-desc">Rich and intense, our signature espresso with perfect crema.</p>
+                <span class="item-price">100</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="hot">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/fa/95/63/fa956306477e1be8b2974999609b6652.jpg" alt="Hazelnut">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Hazelnut</h3>
+                <p class="item-desc">Espresso with hot water for a smooth, rich cup.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="hot">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/f0/65/5f/f0655f2737da76be9b4ac435c65e3d9b.jpg" alt="Cappuccino">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Cappuccino</h3>
+                <p class="item-desc">Espresso, steamed milk, and foam for a creamy delight.</p>
+                <span class="item-price">100</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="hot">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/68/9e/1e/689e1e87e7799a1302ef3bbf85774bc2.jpg" alt="Latte">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Cafe Latte</h3>
+                <p class="item-desc">Espresso with steamed milk and a light layer of foam.</p>
+                <span class="item-price">150</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="hot">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/85/8f/5e/858f5ee12a7098d9c51044d98ae63d17.jpg" alt="Mocha">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Mocha</h3>
+                <p class="item-desc">Espresso, chocolate, and steamed milk topped with whipped cream.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <!-- Iced Coffee -->
+        <div class="menu-item" data-category="iced">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/7f/f3/3b/7ff33b6f713e86e43bd0e14f82f83c0e.jpg" alt="Iced Americano">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Iced Americano</h3>
+                <p class="item-desc">Chilled espresso with cold water and ice.</p>
+                <span class="item-price">150</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="iced">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/d3/9e/9c/d39e9c5f5c45a1c49a7ca8413c52cb9a.jpg" alt="Iced Latte">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Iced Latte</h3>
+                <p class="item-desc">Espresso with cold milk and ice for a refreshing treat.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="iced">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/93/aa/5d/93aa5d0cb7a25a6925f1bc4ee08bb4b7.jpg" alt="Iced Mocha">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Iced Mocha</h3>
+                <p class="item-desc">Espresso, chocolate, milk, and ice topped with whipped cream.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="iced">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/17/59/c9/1759c9d02a4c3edb398c986e42629148.jpg" alt="Iced Caramel Macchiato">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Iced Caramel Macchiato</h3>
+                <p class="item-desc">Espresso, vanilla, milk, ice, and caramel drizzle.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="iced">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/32/af/e8/32afe81c8d46a7e95680e1d42b0bc23e.jpg" alt="Cold Brew">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Cold Brew</h3>
+                <p class="item-desc">Slow-steeped cold brew coffee, smooth and bold.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <!-- Frappe -->
+        <div class="menu-item" data-category="frappe">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/1c/1a/63/1c1a63d5b39a8d7570c58c8f3b5fabf9.jpg" alt="Coffee Frappe">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Coffee Frappe</h3>
+                <p class="item-desc">Blended iced coffee with a creamy finish.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="frappe">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/06/dc/2d/06dc2d6e65530a187079fdf58fa9552a.jpg" alt="Mocha Frappe">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Mocha Frappe</h3>
+                <p class="item-desc">Blended coffee, chocolate, and ice topped with whipped cream.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="frappe">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/fc/29/3c/fc293c921c554e0163a973b5ce91145c.jpg" alt="Caramel Frappe">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Caramel Frappe</h3>
+                <p class="item-desc">Blended coffee, caramel, and ice with whipped cream.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="frappe">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/b7/0e/70/b70e70893847cac2261bdc21526b82da.jpg" alt="Vanilla Frappe">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Vanilla Frappe</h3>
+                <p class="item-desc">Blended coffee, vanilla, and ice with whipped cream.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="frappe">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/ce/2a/3b/ce2a3ba38ac2e24c27ecbb046f91cd94.jpg" alt="Matcha Frappe">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Matcha Frappe</h3>
+                <p class="item-desc">Blended matcha green tea, milk, and ice.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <!-- Pasta -->
+        <div class="menu-item" data-category="pasta">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/6d/aa/3b/6daa3b555d2f9ef10b8d85bde3dd246e.jpg" alt="Spaghetti Bolognese">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Spaghetti Bolognese</h3>
+                <p class="item-desc">Classic Italian pasta with rich beef and tomato sauce.</p>
+                <span class="item-price">190</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pasta">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/be/40/cc/be40ccae926a8598435836864216bf1c.jpg" alt="Carbonara">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Carbonara</h3>
+                <p class="item-desc">Creamy pasta with bacon, egg, and parmesan cheese.</p>
+                <span class="item-price">190</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pasta">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/3b/87/08/3b870829e51a912147ad1edc773d254d.jpg" alt="Chicken Alfredo">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Chicken Alfredo</h3>
+                <p class="item-desc">Fettuccine pasta with creamy Alfredo sauce and grilled chicken.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pasta">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/95/65/f8/9565f8505198c083ac4b90d6e251b17c.jpg" alt="Pesto Pasta">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Pesto Pasta</h3>
+                <p class="item-desc">Pasta tossed in fresh basil pesto sauce and parmesan.</p>
+                <span class="item-price">200</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pasta">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/62/09/05/620905509b0c148e805606343fad0381.jpg" alt="Seafood Marinara">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Seafood Marinara</h3>
+                <p class="item-desc">Spaghetti with mixed seafood in a tangy marinara sauce.</p>
+                <span class="item-price">250</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <!-- Pastry -->
+        <div class="menu-item" data-category="pastry">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/65/9b/13/659b131976633b1495f075b0abedf388.jpg" alt="Croissant">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Butter Croissant</h3>
+                <p class="item-desc">Flaky, buttery croissant baked fresh daily.</p>
+                <span class="item-price">100</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pastry">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/8a/f4/a9/8af4a93d517f41aef4103bf5578afe90.jpg" alt="Chocolate Muffin">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Chocolate Muffin</h3>
+                <p class="item-desc">Moist chocolate muffin with chocolate chips.</p>
+                <span class="item-price">120</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pastry">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/16/7b/38/167b38bab2de4e910a3060a929a01f3d.jpg" alt="Blueberry Scone">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Blueberry Scone</h3>
+                <p class="item-desc">Tender scone filled with juicy blueberries.</p>
+                <span class="item-price">180</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pastry">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/736x/99/b3/10/99b310f09c608257052ab697bc1acbf4.jpg" alt="Cinnamon Roll">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Cinnamon Roll</h3>
+                <p class="item-desc">Sweet cinnamon roll topped with vanilla glaze.</p>
+                <span class="item-price">120</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        <div class="menu-item" data-category="pastry">
+            <div class="item-image">
+                <img src="https://i.pinimg.com/1200x/86/19/34/861934f4bb002d7438bb631934c18079.jpg" alt="Apple Turnover">
+            </div>
+            <div class="item-details">
+                <h3 class="item-title">Apple Turnover</h3>
+                <p class="item-desc">Puff pastry filled with spiced apple compote.</p>
+                <span class="item-price">100</span>
+                <button class="add-to-cart">Add to Order</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="social-links">
+                <a href="#">Facebook</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p>© 2023 Chim's Cafe. All rights reserved.</p>
+            <p>Designed with love for coffee and community</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
