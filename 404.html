@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 — Page not found • Chim's Cafe</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .error-hero {
+      height: 70vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:2rem;
+      color:var(--dark-text);
+      background: linear-gradient(180deg, rgba(245,240,225,1) 0%, rgba(245,240,225,0.95) 100%);
+    }
+    .error-card{
+      max-width:800px;
+      background:#fff;
+      padding:2rem;
+      border-radius:12px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.08);
+    }
+    .error-code{font-size:4rem;color:var(--accent-color);margin-bottom:0.5rem}
+    .error-msg{font-size:1.2rem;color:var(--text-color);margin-bottom:1rem}
+    .error-actions .btn{margin-top:1rem}
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Chim's Cafe</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="error-hero">
+    <div class="error-card">
+      <div class="error-code">404</div>
+      <h1>Page not found</h1>
+      <p class="error-msg">We couldn't find the page you're looking for. Maybe try returning home or exploring our menu.</p>
+      <div class="error-actions">
+        <a class="btn" href="index.html">Go to Home</a>
+        <a class="btn" href="menu.html" style="margin-left:1rem;">View Menu</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Instagram</a>
+      </div>
+      <p>© 2023 Chim's Cafe. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
