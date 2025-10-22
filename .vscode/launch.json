@@ -15,5 +15,12 @@
     "cleanUrls": true,
     "rewrites": [
         { "source": "/(.*)", "destination": "/index.html" }
+    ],
+    "builds": [
+        { "src": "package.json", "use": "@vercel/static-build" }
+    ],
+    "routes": [
+        { "handle": "filesystem" },
+        { "src": "/(.*)", "dest": "/index.html" }
     ]
 }
